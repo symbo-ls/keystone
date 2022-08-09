@@ -9,7 +9,7 @@
     "build": "keystone build"
   },
   "dependencies": {
-    "@graphql-tools/schema": "^8.3.1",
+    "@graphql-tools/schema": "^9.0.0",
     "@keystone-6/core": "^2.0.0",
     "graphql": "^15.8.0",
     "nexus": "1.1.0"
