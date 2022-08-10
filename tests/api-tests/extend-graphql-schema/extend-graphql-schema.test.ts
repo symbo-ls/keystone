@@ -41,12 +41,6 @@ const extendGraphqlSchema = graphql.extend(() => {
         args: { x: graphql.arg({ type: graphql.nonNull(graphql.Int) }) },
         resolve: withAccessCheck(falseFn, (_, { x }: { x: number }) => 4 * x),
       }),
-      //users: graphql.field({
-      //  type: base.object('User'),
-      //  resolve() {
-      //    return withAccessCheck(true, () => [{ name: 'foo' }]);
-      //  },
-      //}),
     },
   };
 });
@@ -122,20 +116,4 @@ describe('extendGraphqlSchema', () => {
       expect(data.createUser.name).toEqual('Real User');
     })
   );
-  // it(
-  //   'Overrides default keystone resolvers with custom resolvers',
-  //   runner(async ({ context }) => {
-  //     const data = await context.graphql.run({
-  //       query: `
-  //             query {
-  //               users {
-  //                 name
-  //               }
-  //             }
-  //           `,
-  //     });
-  //
-  //     expect(data.users[0].name).toEqual('foo');
-  //   })
-  // );
 });
