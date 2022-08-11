@@ -822,7 +822,7 @@ type Mutation {
     token: String!
     password: String!
   ): RedeemUserPasswordResetTokenResult
-  addToCart(productId: ID): CartItem
+  addToCart(productId: ID!): CartItem
   checkout(token: String!): Order
 }
 
