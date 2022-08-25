@@ -3,6 +3,7 @@ import { list } from '@keystone-6/core';
 import { statelessSessions } from '@keystone-6/core/session';
 import { createAuth } from '@keystone-6/auth';
 import { setupTestRunner, TestArgs } from '@keystone-6/core/testing';
+import { allowAll } from '@keystone-6/core/access';
 import { apiTestConfig, expectInternalServerError, expectValidationError, seed } from './utils';
 
 const initialData = {
@@ -48,6 +49,7 @@ const runner = setupTestRunner({
     apiTestConfig({
       lists: {
         User: list({
+          access: allowAll,
           fields: {
             name: text(),
             email: text({ validation: { isRequired: true }, isIndexed: 'unique' }),

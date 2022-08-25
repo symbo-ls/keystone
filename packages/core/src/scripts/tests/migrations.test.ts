@@ -4,6 +4,7 @@ import { checkbox, text } from '../../fields';
 import { requirePrismaClient } from '../../artifacts';
 import { config, list } from '../..';
 import { ExitError } from '../utils';
+import { allowAll } from '../../access';
 import {
   getFiles,
   introspectDb,
@@ -15,6 +16,7 @@ import {
 
 const basicLists = {
   Todo: list({
+    access: allowAll,
     fields: {
       title: text(),
     },
