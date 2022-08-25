@@ -1,5 +1,12 @@
 # @keystone-6/generate-artifacts-for-projects
 
+## 0.0.3
+
+### Patch Changes
+
+- Updated dependencies [[`c06c5d60c`](https://github.com/keystonejs/keystone/commit/c06c5d60c8a4d0f05eb3b1e84f97b5611f07005a), [`fdbfca33b`](https://github.com/keystonejs/keystone/commit/fdbfca33b473bc76326ea47b8ed60ac7eaa6a58d), [`c06c5d60c`](https://github.com/keystonejs/keystone/commit/c06c5d60c8a4d0f05eb3b1e84f97b5611f07005a), [`c2275621d`](https://github.com/keystonejs/keystone/commit/c2275621d7e96576acd59de7636095c432b3570e)]:
+  - @keystone-6/core@3.0.0
+
 ## 0.0.2
 
 ### Patch Changes

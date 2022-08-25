@@ -1,5 +1,20 @@
 # @keystone-6/core
 
+## 3.0.0
+
+### Major Changes
+
+- [#7671](https://github.com/keystonejs/keystone/pull/7671) [`c06c5d60c`](https://github.com/keystonejs/keystone/commit/c06c5d60c8a4d0f05eb3b1e84f97b5611f07005a) Thanks [@renovate](https://github.com/apps/renovate)! - Updates Prisma to 4.2.1
+
+* [#7671](https://github.com/keystonejs/keystone/pull/7671) [`c06c5d60c`](https://github.com/keystonejs/keystone/commit/c06c5d60c8a4d0f05eb3b1e84f97b5611f07005a) Thanks [@renovate](https://github.com/apps/renovate)! - Changes the return type for the `resolveInput` hook with `json` fields. Previously you may have used `'DbNull'` or `'JsonNull'` as respective null magic values - you can now always use a Javascript `null` value.
+  Unlike previous behaviour, a null value will now consistently map to a `Prisma.DbNull`.
+
+- [#7805](https://github.com/keystonejs/keystone/pull/7805) [`c2275621d`](https://github.com/keystonejs/keystone/commit/c2275621d7e96576acd59de7636095c432b3570e) Thanks [@mitchellhamilton](https://github.com/mitchellhamilton)! - Changes field `.views` module resolution, from a path, to a module path that is resolved from where `keystone start` is run
+
+### Patch Changes
+
+- [#7833](https://github.com/keystonejs/keystone/pull/7833) [`fdbfca33b`](https://github.com/keystonejs/keystone/commit/fdbfca33b473bc76326ea47b8ed60ac7eaa6a58d) Thanks [@Noviny](https://github.com/Noviny)! - Fixes types for `resolvedData`, and the return types for `resolveInput` hooks.
+
 ## 2.2.0
 
 ### Minor Changes
