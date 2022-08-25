@@ -1,6 +1,7 @@
 import { text, integer, relationship } from '@keystone-6/core/fields';
 import { list } from '@keystone-6/core';
 import { setupTestRunner } from '@keystone-6/core/testing';
+import { allowAll } from '@keystone-6/core/access';
 import { apiTestConfig, expectGraphQLValidationError, expectLimitsExceededError } from '../utils';
 import { depthLimit, definitionLimit, fieldLimit } from './validation';
 
@@ -12,6 +13,7 @@ const runner = setupTestRunner({
           title: text(),
           author: relationship({ ref: 'User.posts', many: true }),
         },
+        access: allowAll,
       }),
       User: list({
         fields: {
@@ -24,6 +26,7 @@ const runner = setupTestRunner({
             maxResults: 2,
           },
         },
+        access: allowAll,
       }),
     },
     graphql: {

@@ -1,6 +1,7 @@
 import { list } from '@keystone-6/core';
 import { checkbox, password, relationship, text, timestamp } from '@keystone-6/core/fields';
 import { select } from '@keystone-6/core/fields';
+import { allowAll } from '@keystone-6/core/access';
 import { Lists } from '.keystone/types';
 
 export const lists: Lists = {
@@ -31,6 +32,7 @@ export const lists: Lists = {
           return !!(session?.itemId && session.itemId === task.assignedTo?.id);
         },
       },
+      operation: allowAll,
     },
   }),
   Person: list({
@@ -40,5 +42,6 @@ export const lists: Lists = {
       password: password({ validation: { isRequired: true } }),
       tasks: relationship({ ref: 'Task.assignedTo', many: true }),
     },
+    access: allowAll,
   }),
 };

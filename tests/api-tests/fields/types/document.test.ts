@@ -4,6 +4,7 @@ import { list } from '@keystone-6/core';
 import { setupTestEnv, setupTestRunner } from '@keystone-6/core/testing';
 import { KeystoneContext } from '@keystone-6/core/types';
 import { component, fields } from '@keystone-6/fields-document/component-blocks';
+import { allowAll } from '@keystone-6/core/access';
 import { apiTestConfig, expectInternalServerError } from '../../utils';
 
 const runner = setupTestRunner({
@@ -21,6 +22,7 @@ const runner = setupTestRunner({
             },
           }),
         },
+        access: allowAll,
       }),
       Author: list({
         fields: {
@@ -44,7 +46,10 @@ const runner = setupTestRunner({
             },
           }),
         },
-        access: { filter: { query: () => ({ name: { not: { equals: 'Charlie' } } }) } },
+        access: {
+          filter: { query: () => ({ name: { not: { equals: 'Charlie' } } }) },
+          operation: allowAll,
+        },
       }),
     },
   }),
@@ -307,6 +312,7 @@ describe('Document field type', () => {
                   },
                 }),
               },
+              access: allowAll,
             }),
           },
         }),
@@ -342,6 +348,7 @@ describe('Document field type', () => {
                   },
                 }),
               },
+              access: allowAll,
             }),
           },
         }),

@@ -144,6 +144,7 @@ describe('useMigrations: false', () => {
       'keystone.js': basicKeystoneConfig(false, {
         Todo: {
           fields: {},
+          access: allowAll,
         },
       }),
     });
@@ -190,6 +191,7 @@ describe('useMigrations: false', () => {
       'keystone.js': basicKeystoneConfig(false, {
         Todo: {
           fields: {},
+          access: allowAll,
         },
       }),
     });
@@ -318,6 +320,7 @@ describe('useMigrations: true', () => {
             title: text(),
             isComplete: checkbox(),
           },
+          access: allowAll,
         },
       }),
     });
@@ -386,6 +389,7 @@ describe('useMigrations: true', () => {
       'keystone.js': basicKeystoneConfig(true, {
         Todo: {
           fields: {},
+          access: allowAll,
         },
       }),
     });
@@ -580,6 +584,7 @@ describe('useMigrations: true', () => {
             title: text(),
             isComplete: checkbox(),
           },
+          access: allowAll,
         },
       }),
     });

@@ -2,6 +2,7 @@ import { gen, sampleOne } from 'testcheck';
 import { text, relationship } from '@keystone-6/core/fields';
 import { list } from '@keystone-6/core';
 import { setupTestRunner } from '@keystone-6/core/testing';
+import { allowAll } from '@keystone-6/core/access';
 import { apiTestConfig } from '../../../utils';
 
 const alphanumGenerator = gen.alphaNumString.notEmpty();
@@ -14,6 +15,7 @@ const runner = setupTestRunner({
           name: text(),
           location: relationship({ ref: 'Location.company' }),
         },
+        access: allowAll,
       }),
       Location: list({
         fields: {
@@ -22,6 +24,7 @@ const runner = setupTestRunner({
           // @ts-ignore
           company: relationship({ ref: 'Company.location', isRequired: true }),
         },
+        access: allowAll,
       }),
     },
   }),

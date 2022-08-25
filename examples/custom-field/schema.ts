@@ -1,5 +1,6 @@
 import { list } from '@keystone-6/core';
 
+import { allowAll } from '@keystone-6/core/access';
 import { text } from './1-text-field';
 import { stars } from './2-stars-field';
 import { pair } from './3-pair-field';
@@ -41,5 +42,6 @@ export const lists: Lists = {
         };
       },
     },
+    access: allowAll,
   }),
 };

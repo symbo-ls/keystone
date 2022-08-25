@@ -3,6 +3,7 @@ import { text, relationship, integer } from '@keystone-6/core/fields';
 import { list, graphQLSchemaExtension } from '@keystone-6/core';
 import { KeystoneContext } from '@keystone-6/core/types';
 import { setupTestRunner } from '@keystone-6/core/testing';
+import { allowAll } from '@keystone-6/core/access';
 import { apiTestConfig } from '../utils';
 
 const runner = setupTestRunner({
@@ -16,6 +17,7 @@ const runner = setupTestRunner({
         graphql: {
           cacheHint: { scope: CacheScope.Public, maxAge: 100 },
         },
+        access: allowAll,
       }),
       User: list({
         fields: {
@@ -39,6 +41,7 @@ const runner = setupTestRunner({
             return { maxAge: 100 };
           },
         },
+        access: allowAll,
       }),
     },
     extendGraphqlSchema: graphQLSchemaExtension({

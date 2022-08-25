@@ -2,6 +2,7 @@ import { gen, sampleOne } from 'testcheck';
 import { text, relationship } from '@keystone-6/core/fields';
 import { list } from '@keystone-6/core';
 import { setupTestRunner } from '@keystone-6/core/testing';
+import { allOperations, allowAll } from '@keystone-6/core/access';
 import { apiTestConfig, expectSingleRelationshipError } from '../../utils';
 
 const runner = setupTestRunner({
@@ -11,19 +12,21 @@ const runner = setupTestRunner({
         fields: {
           name: text(),
         },
+        access: allowAll,
       }),
       Event: list({
         fields: {
           title: text(),
           group: relationship({ ref: 'Group' }),
         },
+        access: allowAll,
       }),
       GroupNoRead: list({
         fields: {
           name: text(),
         },
         access: {
-          operation: { query: () => false },
+          operation: { ...allOperations(allowAll), query: () => false },
         },
       }),
       EventToGroupNoRead: list({
@@ -31,23 +34,26 @@ const runner = setupTestRunner({
           title: text(),
           group: relationship({ ref: 'GroupNoRead' }),
         },
+        access: allowAll,
       }),
       GroupNoReadHard: list({
         fields: { name: text() },
         graphql: { omit: ['query'] },
+        access: allowAll,
       }),
       EventToGroupNoReadHard: list({
         fields: {
           title: text(),
           group: relationship({ ref: 'GroupNoReadHard' }),
         },
+        access: allowAll,
       }),
       GroupNoCreate: list({
         fields: {
           name: text(),
         },
         access: {
-          operation: { create: () => false },
+          operation: { ...allOperations(allowAll), create: () => false },
         },
       }),
       EventToGroupNoCreate: list({
@@ -55,36 +61,42 @@ const runner = setupTestRunner({
           title: text(),
           group: relationship({ ref: 'GroupNoCreate' }),
         },
+        access: allowAll,
       }),
       GroupNoCreateHard: list({
         fields: { name: text() },
         graphql: { omit: ['create'] },
+        access: allowAll,
       }),
       EventToGroupNoCreateHard: list({
         fields: {
           title: text(),
           group: relationship({ ref: 'GroupNoCreateHard' }),
         },
+        access: allowAll,
       }),
       GroupNoUpdate: list({
         fields: { name: text() },
-        access: { operation: { update: () => false } },
+        access: { operation: { ...allOperations(allowAll), update: () => false } },
       }),
       EventToGroupNoUpdate: list({
         fields: {
           title: text(),
           group: relationship({ ref: 'GroupNoUpdate' }),
         },
+        access: allowAll,
       }),
       GroupNoUpdateHard: list({
         fields: { name: text() },
         graphql: { omit: ['update'] },
+        access: allowAll,
       }),
       EventToGroupNoUpdateHard: list({
         fields: {
           title: text(),
           group: relationship({ ref: 'GroupNoUpdateHard' }),
         },
+        access: allowAll,
       }),
     },
   }),

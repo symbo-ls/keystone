@@ -4,6 +4,7 @@ import express from 'express';
 import { setupTestRunner } from '@keystone-6/core/testing';
 import type { Options as BodyParserOptions } from 'body-parser';
 import supertest from 'supertest';
+import { allowAll } from '@keystone-6/core/access';
 import { apiTestConfig } from './utils';
 
 function makeQuery(size = 0) {
@@ -41,6 +42,7 @@ function setup(options?: BodyParserOptions) {
           fields: {
             value: text(),
           },
+          access: allowAll,
         }),
       },
       graphql: {

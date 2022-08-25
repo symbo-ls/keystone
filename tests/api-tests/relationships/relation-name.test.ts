@@ -1,4 +1,5 @@
 import { list } from '@keystone-6/core';
+import { allowAll } from '@keystone-6/core/access';
 import { relationship } from '@keystone-6/core/fields';
 import { getPrismaSchema, apiTestConfig, dbProvider } from '../utils';
 
@@ -10,11 +11,13 @@ test('when not specifying relationName in a many to many relationship, the name 
           fields: {
             b: relationship({ ref: 'B.a', many: true }),
           },
+          access: allowAll,
         }),
         B: list({
           fields: {
             a: relationship({ ref: 'A.b', many: true }),
           },
+          access: allowAll,
         }),
       },
     })
@@ -53,11 +56,13 @@ test("the ordering of the lists doesn't affect the relation name", async () => {
           fields: {
             b: relationship({ ref: 'B.a', many: true }),
           },
+          access: allowAll,
         }),
         B: list({
           fields: {
             a: relationship({ ref: 'A.b', many: true }),
           },
+          access: allowAll,
         }),
       },
     })
@@ -96,11 +101,13 @@ test('when specifying relationName in a many to many relationship, the relation 
           fields: {
             b: relationship({ ref: 'B.a', many: true }),
           },
+          access: allowAll,
         }),
         B: list({
           fields: {
             a: relationship({ ref: 'A.b', many: true, db: { relationName: 'the_relation_name' } }),
           },
+          access: allowAll,
         }),
       },
     })
@@ -140,12 +147,14 @@ test('when specifying relationName on both sides of a many to many relationship,
             fields: {
               b: relationship({ ref: 'B.a', many: true, db: { relationName: 'blah' } }),
             },
+            access: allowAll,
           }),
 
           B: list({
             fields: {
               a: relationship({ ref: 'A.b', many: true, db: { relationName: 'blah' } }),
             },
+            access: allowAll,
           }),
         },
       })
@@ -164,12 +173,14 @@ test('when specifying relationName on the many side of a one to many relationshi
             fields: {
               b: relationship({ ref: 'B.a', many: true, db: { relationName: 'blah' } }),
             },
+            access: allowAll,
           }),
 
           B: list({
             fields: {
               a: relationship({ ref: 'A.b' }),
             },
+            access: allowAll,
           }),
         },
       })

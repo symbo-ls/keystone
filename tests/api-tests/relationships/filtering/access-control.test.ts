@@ -2,6 +2,7 @@ import { gen, sampleOne } from 'testcheck';
 import { text, relationship } from '@keystone-6/core/fields';
 import { list } from '@keystone-6/core';
 import { setupTestRunner } from '@keystone-6/core/testing';
+import { allowAll } from '@keystone-6/core/access';
 import { apiTestConfig } from '../../utils';
 
 const alphanumGenerator = gen.alphaNumString.notEmpty();
@@ -17,6 +18,7 @@ const runner = setupTestRunner({
           posts: relationship({ ref: 'PostLimitedRead.author', many: true }),
         },
         access: {
+          operation: allowAll,
           filter: {
             query: () => ({ username: { not: { equals: 'bad' } } }),
           },
@@ -29,6 +31,7 @@ const runner = setupTestRunner({
           author: relationship({ ref: 'UserToPostLimitedRead.posts', many: false }),
         },
         access: {
+          operation: allowAll,
           filter: {
             // Limit read access to the first post only
             query: () => ({ name: { in: [postNames[1]] } }),

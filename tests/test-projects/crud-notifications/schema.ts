@@ -30,6 +30,7 @@ export const lists = {
     },
   }),
   Person: list({
+    access: allowAll,
     fields: {
       name: text({ validation: { isRequired: true } }),
       tasks: relationship({ ref: 'Task.assignedTo', many: true }),

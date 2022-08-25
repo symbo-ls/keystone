@@ -1,6 +1,7 @@
 import { text, relationship } from '@keystone-6/core/fields';
 import { list } from '@keystone-6/core';
 import { setupTestRunner } from '@keystone-6/core/testing';
+import { allowAll } from '@keystone-6/core/access';
 import { apiTestConfig, expectSingleRelationshipError } from '../../utils';
 
 const runner = setupTestRunner({
@@ -10,12 +11,14 @@ const runner = setupTestRunner({
         fields: {
           name: text(),
         },
+        access: allowAll,
       }),
       Event: list({
         fields: {
           title: text(),
           group: relationship({ ref: 'Group' }),
         },
+        access: allowAll,
       }),
     },
   }),

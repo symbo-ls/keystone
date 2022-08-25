@@ -4,6 +4,7 @@ import { text } from '@keystone-6/core/fields';
 import { KeystoneContext } from '@keystone-6/core/types';
 import { setupTestRunner } from '@keystone-6/core/testing';
 import { humanize } from '@keystone-6/core/src/lib/utils';
+import { allowAll } from '@keystone-6/core/access';
 import { apiTestConfig, expectSingleResolverError, expectValidationError } from '../utils';
 
 const testModules = globby.sync(`packages/**/src/**/test-fixtures.{js,ts}`, {
@@ -27,6 +28,7 @@ testModules
                 name: text(),
                 ...mod.getTestFields(matrixValue),
               },
+              access: allowAll,
             }),
           },
           ...mod.getRootConfig?.(matrixValue),

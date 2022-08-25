@@ -2,6 +2,7 @@ import { relationship, text } from '@keystone-6/core/fields';
 import { list } from '@keystone-6/core';
 import { GraphQLRequest, setupTestRunner } from '@keystone-6/core/testing';
 import { KeystoneContext } from '@keystone-6/core/types';
+import { allowAll } from '@keystone-6/core/access';
 import { apiTestConfig, expectExtensionError, unpackErrors } from '../utils';
 
 const runner = (debug: boolean | undefined) =>
@@ -34,6 +35,7 @@ const runner = (debug: boolean | undefined) =>
               }
             },
           },
+          access: allowAll,
         }),
         Post: list({
           fields: {
@@ -90,6 +92,7 @@ const runner = (debug: boolean | undefined) =>
               },
             }),
           },
+          access: allowAll,
         }),
         BadResolveInput: list({
           fields: {
@@ -102,6 +105,7 @@ const runner = (debug: boolean | undefined) =>
               },
             }),
           },
+          access: allowAll,
         }),
       },
       graphql: { debug },

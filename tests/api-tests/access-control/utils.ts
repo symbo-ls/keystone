@@ -2,6 +2,7 @@ import { text, password } from '@keystone-6/core/fields';
 import { list, ListSchemaConfig } from '@keystone-6/core';
 import { statelessSessions } from '@keystone-6/core/session';
 import { createAuth } from '@keystone-6/auth';
+import { allowAll } from '@keystone-6/core/access';
 import { apiTestConfig } from '../utils';
 
 const FAKE_ID = 'cdsfasfafafadfasdf';
@@ -112,6 +113,7 @@ const lists: ListSchemaConfig = {
       noRead: text({ access: { read: () => false } }),
       yesRead: text({ access: { read: () => true } }),
     },
+    access: allowAll,
   }),
 };
 

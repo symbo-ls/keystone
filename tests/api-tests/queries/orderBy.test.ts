@@ -2,6 +2,7 @@ import { integer } from '@keystone-6/core/fields';
 import { list } from '@keystone-6/core';
 import { setupTestRunner } from '@keystone-6/core/testing';
 import { KeystoneContext } from '@keystone-6/core/types';
+import { allowAll } from '@keystone-6/core/access';
 import {
   apiTestConfig,
   expectAccessReturnError,
@@ -27,11 +28,16 @@ const runner = setupTestRunner({
           orderFunctionOtherTruthy: integer({ isOrderable: () => ({}) }),
           orderFunctionFalseToo: integer({ isOrderable: () => false }),
         },
+        access: allowAll,
       }),
-      DefaultOrderUndefined: list({ fields: { a: integer(), b: integer({ isOrderable: true }) } }),
+      DefaultOrderUndefined: list({
+        fields: { a: integer(), b: integer({ isOrderable: true }) },
+        access: allowAll,
+      }),
       DefaultOrderFalse: list({
         fields: { a: integer(), b: integer({ isOrderable: true }) },
         defaultIsOrderable: false,
+        access: allowAll,
       }),
       DefaultOrderTrue: list({
         fields: { a: integer(), b: integer({ isOrderable: true }) },
@@ -41,18 +47,22 @@ const runner = setupTestRunner({
       DefaultOrderFunctionFalse: list({
         fields: { a: integer(), b: integer({ isOrderable: true }) },
         defaultIsOrderable: () => false,
+        access: allowAll,
       }),
       DefaultOrderFunctionTrue: list({
         fields: { a: integer(), b: integer({ isOrderable: true }) },
         defaultIsOrderable: () => true,
+        access: allowAll,
       }),
       DefaultOrderFunctionFalsey: list({
         fields: { a: integer(), b: integer({ isOrderable: true }) },
+        access: allowAll,
         // @ts-ignore
         defaultIsOrderable: () => null,
       }),
       DefaultOrderFunctionTruthy: list({
         fields: { a: integer(), b: integer({ isOrderable: true }) },
+        access: allowAll,
         // @ts-ignore
         defaultIsOrderable: () => ({}),
       }),

@@ -4,6 +4,7 @@ import express from 'express';
 import { list } from '@keystone-6/core';
 import { text, password } from '@keystone-6/core/fields';
 import { setupTestRunner } from '@keystone-6/core/testing';
+import { allowAll } from '@keystone-6/core/access';
 import { apiTestConfig } from '../utils';
 
 const runner = setupTestRunner({
@@ -15,6 +16,7 @@ const runner = setupTestRunner({
           email: text(),
           password: password(),
         },
+        access: allowAll,
       }),
     },
   }),

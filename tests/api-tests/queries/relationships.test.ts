@@ -3,6 +3,7 @@ import { gen, sampleOne } from 'testcheck';
 import { text, relationship } from '@keystone-6/core/fields';
 import { list } from '@keystone-6/core';
 import { setupTestRunner } from '@keystone-6/core/testing';
+import { allowAll } from '@keystone-6/core/access';
 import { apiTestConfig } from '../utils';
 
 const alphanumGenerator = gen.alphaNumString.notEmpty();
@@ -15,12 +16,14 @@ const runner = setupTestRunner({
           title: text(),
           author: relationship({ ref: 'User' }),
         },
+        access: allowAll,
       }),
       User: list({
         fields: {
           name: text(),
           feed: relationship({ ref: 'Post', many: true }),
         },
+        access: allowAll,
       }),
     },
   }),

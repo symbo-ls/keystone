@@ -1,4 +1,5 @@
 import { list } from '@keystone-6/core';
+import { allowAll } from '@keystone-6/core/access';
 import { select, relationship, text, timestamp } from '@keystone-6/core/fields';
 
 export const lists = {
@@ -16,6 +17,7 @@ export const lists = {
       publishDate: timestamp(),
       author: relationship({ ref: 'Author.posts', many: false }),
     },
+    access: allowAll,
   }),
   Author: list({
     fields: {
@@ -23,5 +25,6 @@ export const lists = {
       email: text({ isIndexed: 'unique', validation: { isRequired: true } }),
       posts: relationship({ ref: 'Post.author', many: true }),
     },
+    access: allowAll,
   }),
 };

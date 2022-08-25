@@ -1,4 +1,5 @@
 import { graphQLSchemaExtension, list } from '@keystone-6/core';
+import { allowAll } from '@keystone-6/core/access';
 import { text } from '@keystone-6/core/fields';
 
 export const lists = {
@@ -7,6 +8,7 @@ export const lists = {
       text: text({ label: 'Initial Label For Text' }),
       anotherField: text(),
     },
+    access: allowAll,
   }),
 };
 

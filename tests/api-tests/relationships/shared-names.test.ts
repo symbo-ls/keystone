@@ -2,6 +2,7 @@ import { text, relationship } from '@keystone-6/core/fields';
 import { list } from '@keystone-6/core';
 import { setupTestRunner } from '@keystone-6/core/testing';
 import { KeystoneContext } from '@keystone-6/core/types';
+import { allowAll } from '@keystone-6/core/access';
 import { apiTestConfig } from '../utils';
 
 type IdType = any;
@@ -100,12 +101,14 @@ const runner = setupTestRunner({
           company: relationship({ ref: 'Company.employees', many: false }),
           role: relationship({ ref: 'Role', many: false }),
         },
+        access: allowAll,
       }),
       Company: list({
         fields: {
           name: text(),
           employees: relationship({ ref: 'Employee.company', many: true }),
         },
+        access: allowAll,
       }),
       Role: list({
         fields: {
@@ -113,12 +116,14 @@ const runner = setupTestRunner({
           company: relationship({ ref: 'Company', many: false }),
           employees: relationship({ ref: 'Employee', many: true }),
         },
+        access: allowAll,
       }),
       Location: list({
         fields: {
           name: text(),
           employees: relationship({ ref: 'Employee', many: true }),
         },
+        access: allowAll,
       }),
     },
   }),

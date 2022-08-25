@@ -1,6 +1,7 @@
 import { list } from '@keystone-6/core';
 import { checkbox, relationship, text, timestamp } from '@keystone-6/core/fields';
 import { select } from '@keystone-6/core/fields';
+import { allowAll } from '@keystone-6/core/access';
 import { Lists } from '.keystone/types';
 
 export const lists: Lists = {
@@ -63,11 +64,13 @@ export const lists: Lists = {
         },
       }),
     },
+    access: allowAll,
   }),
   Person: list({
     fields: {
       name: text({ validation: { isRequired: true } }),
       tasks: relationship({ ref: 'Task.assignedTo', many: true }),
     },
+    access: allowAll,
   }),
 };

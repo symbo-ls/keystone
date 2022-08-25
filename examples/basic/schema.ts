@@ -12,6 +12,7 @@ import {
 } from '@keystone-6/core/fields';
 import { document } from '@keystone-6/fields-document';
 import { v4 } from 'uuid';
+import { allowAll } from '@keystone-6/core/access';
 import { Context, Lists } from '.keystone/types';
 
 type AccessArgs = {
@@ -89,6 +90,7 @@ const User: Lists.User = list({
       }),
     }),
   },
+  access: allowAll,
 });
 
 export const lists: Lists = {
@@ -128,6 +130,7 @@ export const lists: Lists = {
       }),
       value: text({}),
     },
+    access: allowAll,
   }),
   Post: list({
     fields: {
@@ -175,6 +178,7 @@ export const lists: Lists = {
         },
       }),
     },
+    access: allowAll,
   }),
 };
 

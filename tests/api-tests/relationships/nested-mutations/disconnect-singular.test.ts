@@ -2,6 +2,7 @@ import { gen, sampleOne } from 'testcheck';
 import { text, relationship } from '@keystone-6/core/fields';
 import { list } from '@keystone-6/core';
 import { setupTestRunner } from '@keystone-6/core/testing';
+import { allOperations, allowAll } from '@keystone-6/core/access';
 import { apiTestConfig, expectGraphQLValidationError } from '../../utils';
 
 const alphanumGenerator = gen.alphaNumString.notEmpty();
@@ -13,19 +14,21 @@ const runner = setupTestRunner({
         fields: {
           name: text(),
         },
+        access: allowAll,
       }),
       Event: list({
         fields: {
           title: text(),
           group: relationship({ ref: 'Group' }),
         },
+        access: allowAll,
       }),
       GroupNoRead: list({
         fields: {
           name: text(),
         },
         access: {
-          operation: { query: () => false },
+          operation: { ...allOperations(allowAll), query: () => false },
         },
       }),
       EventToGroupNoRead: list({
@@ -33,6 +36,7 @@ const runner = setupTestRunner({
           title: text(),
           group: relationship({ ref: 'GroupNoRead' }),
         },
+        access: allowAll,
       }),
     },
   }),

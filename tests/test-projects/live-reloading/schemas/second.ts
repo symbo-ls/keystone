@@ -1,4 +1,5 @@
 import { graphql, graphQLSchemaExtension, list } from '@keystone-6/core';
+import { allowAll } from '@keystone-6/core/access';
 import { text, virtual } from '@keystone-6/core/fields';
 
 export const lists = {
@@ -14,6 +15,7 @@ export const lists = {
         }),
       }),
     },
+    access: allowAll,
   }),
 };
 

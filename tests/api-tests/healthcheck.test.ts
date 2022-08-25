@@ -1,4 +1,5 @@
 import { list } from '@keystone-6/core';
+import { allowAll } from '@keystone-6/core/access';
 import { text } from '@keystone-6/core/fields';
 import { setupTestRunner } from '@keystone-6/core/testing';
 import supertest from 'supertest';
@@ -7,7 +8,7 @@ import { apiTestConfig } from './utils';
 const makeRunner = (healthCheck: any) =>
   setupTestRunner({
     config: apiTestConfig({
-      lists: { User: list({ fields: { name: text() } }) },
+      lists: { User: list({ fields: { name: text() }, access: allowAll }) },
       server: { healthCheck },
     }),
   });

@@ -2,6 +2,7 @@ import { gen, sampleOne } from 'testcheck';
 import { text, relationship } from '@keystone-6/core/fields';
 import { list } from '@keystone-6/core';
 import { setupTestRunner } from '@keystone-6/core/testing';
+import { allowAll, allOperations } from '@keystone-6/core/access';
 import {
   apiTestConfig,
   expectGraphQLValidationError,
@@ -17,19 +18,21 @@ const runner = setupTestRunner({
         fields: {
           content: text(),
         },
+        access: allowAll,
       }),
       User: list({
         fields: {
           username: text(),
           notes: relationship({ ref: 'Note', many: true }),
         },
+        access: allowAll,
       }),
       NoteNoRead: list({
         fields: {
           content: text(),
         },
         access: {
-          operation: { query: () => false },
+          operation: { ...allOperations(allowAll), query: () => false },
         },
       }),
       UserToNotesNoRead: list({
@@ -37,13 +40,14 @@ const runner = setupTestRunner({
           username: text(),
           notes: relationship({ ref: 'NoteNoRead', many: true }),
         },
+        access: allowAll,
       }),
       NoteNoCreate: list({
         fields: {
           content: text(),
         },
         access: {
-          operation: { create: () => false },
+          operation: { ...allOperations(allowAll), create: () => false },
         },
       }),
       UserToNotesNoCreate: list({
@@ -51,6 +55,7 @@ const runner = setupTestRunner({
           username: text(),
           notes: relationship({ ref: 'NoteNoCreate', many: true }),
         },
+        access: allowAll,
       }),
     },
   }),

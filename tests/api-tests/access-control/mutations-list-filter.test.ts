@@ -1,6 +1,7 @@
 import { text } from '@keystone-6/core/fields';
 import { list } from '@keystone-6/core';
 import { setupTestRunner } from '@keystone-6/core/testing';
+import { allowAll } from '@keystone-6/core/access';
 import { apiTestConfig, expectAccessDenied } from '../utils';
 
 const runner = setupTestRunner({
@@ -15,6 +16,7 @@ const runner = setupTestRunner({
             update: () => ({ name: { not: { equals: 'bad' } } }),
             delete: async () => ({ name: { not: { contains: 'no delete' } } }),
           },
+          operation: allowAll,
         },
       }),
     },

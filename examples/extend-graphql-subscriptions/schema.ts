@@ -1,5 +1,6 @@
 import { list, graphQLSchemaExtension } from '@keystone-6/core';
 import { select, relationship, text, timestamp } from '@keystone-6/core/fields';
+import { allowAll } from '@keystone-6/core/access';
 import { pubSub } from './websocket';
 
 import type { Lists } from '.keystone/types';
@@ -33,6 +34,7 @@ export const lists: Lists = {
       publishDate: timestamp(),
       author: relationship({ ref: 'Author.posts', many: false }),
     },
+    access: allowAll,
   }),
 
   Author: list({
@@ -41,6 +43,7 @@ export const lists: Lists = {
       email: text({ isIndexed: 'unique', validation: { isRequired: true } }),
       posts: relationship({ ref: 'Post.author', many: true }),
     },
+    access: allowAll,
   }),
 };
 

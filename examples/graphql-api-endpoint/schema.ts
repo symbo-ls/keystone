@@ -1,4 +1,5 @@
 import { list } from '@keystone-6/core';
+import { allowAll } from '@keystone-6/core/access';
 import { text, relationship, password, timestamp, select } from '@keystone-6/core/fields';
 import { document } from '@keystone-6/fields-document';
 
@@ -15,6 +16,7 @@ export const lists = {
       password: password(),
       posts: relationship({ ref: 'Post.author', many: true }),
     },
+    access: allowAll,
   }),
   Post: list({
     fields: {
@@ -64,6 +66,7 @@ export const lists = {
         many: true,
       }),
     },
+    access: allowAll,
   }),
   Tag: list({
     ui: {
@@ -76,5 +79,6 @@ export const lists = {
         many: true,
       }),
     },
+    access: allowAll,
   }),
 };

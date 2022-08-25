@@ -2,6 +2,7 @@ import { text, relationship, integer } from '@keystone-6/core/fields';
 import { list } from '@keystone-6/core';
 import { setupTestRunner } from '@keystone-6/core/testing';
 import { KeystoneContext } from '@keystone-6/core/types';
+import { allowAll } from '@keystone-6/core/access';
 import {
   apiTestConfig,
   expectAccessReturnError,
@@ -30,6 +31,7 @@ const runner = setupTestRunner({
           // @ts-ignore
           filterFunctionOtherTruthy: integer({ isFilterable: () => ({}) }),
         },
+        access: allowAll,
       }),
       SecondaryList: list({
         fields: {
@@ -37,14 +39,17 @@ const runner = setupTestRunner({
           someUser: relationship({ ref: 'User', isFilterable: true }),
           otherUsers: relationship({ ref: 'User', isFilterable: true, many: true }),
         },
+        access: allowAll,
       }),
 
       DefaultFilterUndefined: list({
         fields: { a: integer(), b: integer({ isFilterable: true }) },
+        access: allowAll,
       }),
       DefaultFilterFalse: list({
         fields: { a: integer(), b: integer({ isFilterable: true }) },
         defaultIsFilterable: false,
+        access: allowAll,
       }),
       DefaultFilterTrue: list({
         fields: { a: integer(), b: integer({ isFilterable: true }) },
@@ -54,10 +59,12 @@ const runner = setupTestRunner({
       DefaultFilterFunctionFalse: list({
         fields: { a: integer(), b: integer({ isFilterable: true }) },
         defaultIsFilterable: () => false,
+        access: allowAll,
       }),
       DefaultFilterFunctionTrue: list({
         fields: { a: integer(), b: integer({ isFilterable: true }) },
         defaultIsFilterable: () => true,
+        access: allowAll,
       }),
       DefaultFilterFunctionFalsey: list({
         fields: { a: integer(), b: integer({ isFilterable: true }) },

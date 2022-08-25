@@ -4,6 +4,7 @@ import { statelessSessions } from '@keystone-6/core/session';
 import { createAuth } from '@keystone-6/auth';
 import type { KeystoneContext } from '@keystone-6/core/types';
 import { setupTestRunner, TestArgs, setupTestEnv } from '@keystone-6/core/testing';
+import { allowAll } from '@keystone-6/core/access';
 import { apiTestConfig, expectAccessDenied, seed } from './utils';
 
 const initialData = {
@@ -34,6 +35,7 @@ function setup(options?: any) {
               title: text(),
               postedAt: timestamp(),
             },
+            access: allowAll,
           }),
           User: list({
             fields: {
@@ -118,6 +120,7 @@ describe('Auth testing', () => {
                   email: text(),
                   password: password(),
                 },
+                access: allowAll,
               }),
             },
 
