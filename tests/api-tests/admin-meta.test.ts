@@ -129,10 +129,12 @@ test(
         query {
           keystone {
             adminMeta {
-              list(key: "Test") {
+              model(key: "Test") {
                 label
                 singular
-                plural
+                ... on KeystoneAdminUIListMeta {
+                  plural
+                }
                 path
               }
             }
@@ -140,6 +142,6 @@ test(
         }
       `,
     });
-    expect(res.data!.keystone.adminMeta.list).toEqual(names);
+    expect(res.data!.keystone.adminMeta.model).toEqual(names);
   })
 );
