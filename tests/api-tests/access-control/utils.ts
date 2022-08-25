@@ -141,6 +141,7 @@ listAccessVariations.forEach(access => {
         update: () => access.update && { name: { equals: 'Hello' } },
         delete: () => access.delete && { name: { equals: 'Hello' } },
       },
+      operation: allowAll,
     },
   });
   lists[getFilterBoolListName(access)] = list({
@@ -151,6 +152,7 @@ listAccessVariations.forEach(access => {
         update: () => access.update,
         delete: () => access.delete,
       },
+      operation: allowAll,
     },
   });
   lists[getItemListName(access)] = list({
@@ -164,6 +166,7 @@ listAccessVariations.forEach(access => {
         update: () => access.update,
         delete: () => access.delete,
       },
+      operation: allowAll,
     },
   });
 });
